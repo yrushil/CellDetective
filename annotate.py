@@ -127,7 +127,7 @@ marker_genes_dict = {"Macrophages": ["S100A8", "CD14","LYZ",'FCGR3A','CD1C',"CST
                      "Astrocyte":["ALDH1L1", "NDRG2", "S100B"]
                     }
 
-st.title('Cluster annotation of glioma single-cell data')
+st.header('Cluster annotation of glioma single-cell data')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 uploaded_file = st.file_uploader("Upload AnnData Object", type="h5ad")
@@ -135,7 +135,7 @@ if uploaded_file is not None:
     file_to_annotate = anndata.read_h5ad(uploaded_file)
 
     #GATHER INFOMRATION ABOUT OBJECT
-    st.header('Information about the AnnData Object')
+    st.subheader('Information about the AnnData Object')
     st.write("Number of cells:", file_to_annotate.n_obs)
     st.write("Number of genes:", file_to_annotate.n_vars)
     file_to_annotate.obs.to_csv('temp.csv')
@@ -144,7 +144,7 @@ if uploaded_file is not None:
     st.write(obs_data)
 
     #CLUSTER THE ANNDATA OBJECT
-    st.header('Cluster cells Using Leiden')
+    st.subheader('Cluster cells Using Leiden')
     res = st.number_input('Enter cluster resolution value')
     if res != 0:
         st.text("Computing UMAP...")
@@ -158,11 +158,11 @@ if uploaded_file is not None:
         st.pyplot(sc.pl.umap(file_to_annotate, color=['clusters'],legend_loc ='right margin',frameon=False, title='',legend_fontsize=9,legend_fontoutline=True))
 
         #ANNOTATE THE ANNDATA OBJECT
-        st.header('Annotating Clusters...')
+        st.subheader('Annotating Clusters...')
         df = annotate_cluster(file_to_annotate, 'clusters')
         st.write(df)
 
-        st.header('Plotting Annotated Clusters')
+        st.subheader('Plotting Annotated Clusters')
 
         st.subheader("Annotated Clusters on UMAP Plot")
         file_to_annotate.obs['annotated_clusters'] = file_to_annotate.obs['clusters']
