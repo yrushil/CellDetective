@@ -6,6 +6,7 @@ import numpy as np
 import scanpy as sc
 import anndata
 
+st.set_page_config(page_title='Cell Detective', page_icon='Cell_Detective_Logo.png', layout="wide", initial_sidebar_state="auto")
 def annotate_cluster(adata: anndata.AnnData, cluster_ids: str):
     #Tumor Lists
     Tumor = ["SOX2"]
