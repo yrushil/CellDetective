@@ -7,7 +7,7 @@ import scanpy as sc
 import anndata
 
 st.set_page_config(page_title='Cell Detective', page_icon='Cell_Detective_Logo.png', layout="wide", initial_sidebar_state="auto")
-col1, mid, col2 = st.beta_columns([1,1,20])
+col1, mid, col2 = st.beta_columns([1,20])
 with col1:
     st.image('Cell_Detective_Logo.png', width=60)
 with col2:
